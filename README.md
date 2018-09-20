@@ -9,3 +9,8 @@ In this codelab, you will learn how to use Firebase components to build a basic 
 - Online status check (show "green" or "grey" dot)
 - Bonus: a profanity checker using Cloud Functions with [a 3rd party API](https://algorithmia.com/algorithms/nlp/ProfanityDetection)
 - Finally host the app with _Firebase Hosting_
+
+##  Presenter
+
+- **Brian Koech** @briankoech &bull; tw: [@egolessdev](https://twitter.com/egolessdev)
+- *Technical Editor:* Anthony Nandaa @profnandaa &bull; tw: [@profnandaa](https://twitter.com/profnandaa)
