@@ -1,0 +1,67 @@
+<html>
+  <head>
+    <title>Firebase DevFest 2018</title>
+    <link rel="stylesheet" href="main.css">
+  </head>
+  <body>
+    <div id="loading">
+      <div class="spinner"></div>
+    </div>
+    <!-- Login container -->
+    <div id="login-container">
+      <button onclick="loginUser()" id="login-btn">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="">
+        Sign in to get started
+      </button>
+    </div>
+
+    <!-- chat container -->
+    <div id="chat-box">
+      <div class="sidebar">
+        <div id="profile">
+          <img src="" alt="">
+          <span id="name">Brian Koech</span>
+        </div>
+
+        <h2>Chats</h3>
+        <div id="chats">
+          <ul>
+            <li>
+              <img src="" alt="">
+              <span>Edwin Kibet</span>
+            </li>
+            <li>
+              <img src="" alt="">
+              <span>Edwin Kibet</span>
+            </li>
+
+          </ul>
+          <button id="logout" onclick="logout()">Logout</button>
+        </div>
+
+      </div>
+
+      <div class="messages-container">
+        <div id="receiver">
+          <img src="" alt="">
+          <span id="">Edwin Kibet</span>
+        </div>
+
+        <div id="messages">
+          <ul>
+            <li>This is happening</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://www.gstatic.com/firebasejs/5.5.0/firebase.js"></script>
+    <!-- Add additional services that you want to use -->
+    <!--<script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-auth.js"></script>-->
+    <!--<script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-database.js"></script>-->
+    <!--<script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-functions.js"></script>-->
+    <script src="./main.js"></script>
+  </body>
+</html>

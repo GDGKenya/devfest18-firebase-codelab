@@ -1,0 +1,18 @@
+[debug] [2018-09-20T22:08:39.360Z] ----------------------------------------------------------------------
+[debug] [2018-09-20T22:08:39.362Z] Command:       /Users/bryomckim/.nvm/versions/node/v7.8.0/bin/node /Users/bryomckim/.nvm/versions/node/v7.8.0/bin/firebase deploy
+[debug] [2018-09-20T22:08:39.362Z] CLI Version:   3.18.4
+[debug] [2018-09-20T22:08:39.362Z] Platform:      darwin
+[debug] [2018-09-20T22:08:39.362Z] Node Version:  v7.8.0
+[debug] [2018-09-20T22:08:39.363Z] Time:          Fri Sep 21 2018 01:08:39 GMT+0300 (EAT)
+[debug] [2018-09-20T22:08:39.363Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-09-20T22:08:39.377Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-09-20T22:08:39.377Z] > authorizing via signed-in user
+[debug] [2018-09-20T22:08:39.380Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/devfest-2018-chat-app  
+  
+ Fri Sep 21 2018 01:08:39 GMT+0300 (EAT)
+[debug] [2018-09-20T22:08:40.719Z] <<< HTTP RESPONSE 200
+[debug] [2018-09-20T22:08:40.720Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/devfest-2018-chat-app/tokens  
+  
+ Fri Sep 21 2018 01:08:40 GMT+0300 (EAT)
+[debug] [2018-09-20T22:08:41.621Z] <<< HTTP RESPONSE 200
