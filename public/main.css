@@ -134,15 +134,103 @@ body {
     padding: 20px;
 }
 
+#chats > ul > li:hover {
+  cursor: pointer;
+}
+#chats > ul > li > .hidden {
+  display: none;
+}
 #chats > ul > li > img {
   width: 50px;
   height: 50px;
   border-radius: 50%;
   margin-right: 20px;
+  overflow: hidden;
+  background: #4e4e46;
 }
 
 #chats > ul > li > span {
 
+}
+
+.messages-container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 20px;
+}
+
+#receiver {
+  display: flex;
+  border-bottom: 1px solid grey;
+  align-items: center;
+  padding: 20px 0;
+}
+
+#receiver > img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: grey;
+  margin-right: 10px;
+}
+
+#receiver > span {
+  font-size: 20px;
+  font-weight: 500;
+  color: #4e4e4e;
+}
+
+#messages {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+#messages > .messages-list {
+  list-style: none;
+  padding: 0;
+  background-color: #e7e0de;
+  flex: 1;
+}
+
+#messages > .messages-list > .message {
+  padding: 10px;
+  display: flex;
+  width: fit-content;
+  background: #fff;
+  margin: 10px;
+  border-radius: 5px;
+  box-shadow: 0 0 1px 1px rgba(0, 0, 0, .1);
+}
+
+#messages > .input-fields {
+  padding: 10px;
+  display: flex;
+  align-items: center;
+}
+
+#messages > .input-fields > input {
+  width: 160px;
+}
+
+#messages > .input-fields > textarea {
+  width: 100%;
+  border: 1px solid #eae4e2;
+  border-radius: 5px;
+  margin: 0 10px;
+  box-shadow: 0 0 1px 1px rgba(0, 0, 0, .1);
+  font-size: 16px;
+}
+
+#messages > .input-fields > button {
+  padding: 5px 10px;
+  box-shadow: 0 0 1px 1px rgba(0, 0, 0, .1);
+  border-radius: 3px;
+  background: #0a650a;
+  color: #fff;
+  font-size: 12px;
 }
 
 #logout {
