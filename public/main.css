@@ -27,6 +27,7 @@
 
 body {
   margin: 0px;
+  font-family: Tahoma, Geneva, Verdana, sans-serif;
 }
 
 #loading {
@@ -56,7 +57,7 @@ body {
   height: 100%;
   align-items: center;
   justify-content: center;
-  background: #3e54c5;
+  background: #6B9362;
 }
 
 #login-container > button {
@@ -94,7 +95,7 @@ body {
 #chat-box > .sidebar {
   width: 20%;
   min-width: 250px;
-  background: grey;
+  background: #D2D7D3;
   display: flex;
   flex-direction: column;
 }
@@ -115,8 +116,14 @@ body {
     overflow: hidden;
 }
 
-.sidebar > h2 {
-  text-align: center;
+#profile span {
+  font-weight: bold;
+  color: #888;
+}
+
+.sidebar > h3 {
+  padding: 5px;
+  color: #7A942E;
 }
 
 #chats {
@@ -128,6 +135,7 @@ body {
 #chats > ul {
   list-style: none;
   padding: 0;
+  margin: 0;
   flex: 1;
   overflow-y: auto;
 }
@@ -135,20 +143,22 @@ body {
 #chats > ul > li {
     display: flex;
     align-items: center;
-    background: #fff;
-    border-bottom: 1px solid;
-    padding: 20px;
+    border-bottom: 1px solid #aaa;
+    padding: 5px;
+    color: #888;
 }
 
 #chats > ul > li:hover {
   cursor: pointer;
 }
+
 #chats > ul > li > .hidden {
   display: none;
 }
+
 #chats > ul > li > img {
-  width: 50px;
-  height: 50px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   margin-right: 20px;
   overflow: hidden;
@@ -175,13 +185,14 @@ body {
   flex-direction: column;
   flex: 1;
   padding: 20px;
+  background: #eee;
 }
 
 #receiver {
   display: flex;
-  border-bottom: 1px solid grey;
   align-items: center;
   padding: 20px 0;
+  border-radius: .4em;
 }
 
 #receiver > img {
@@ -224,10 +235,44 @@ body {
   max-width: 80%;
 }
 
+/* #messages .from-them:after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 0;
+  height: 0;
+  border: 14px solid transparent;
+  border-right-color: #fff;
+  border-left: 0;
+  border-bottom: 0;
+  margin-top: -7px;
+  margin-left: -14px;
+} */
+
 #messages > .messages-list > .from-me {
   background: #afe288;
   margin-left: auto;
+  margin-right: 20px;
+  position: relative;
 }
+
+/* from https://leaverou.github.io/bubbly/ */
+#messages .from-me:after { 
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 50%;
+  width: 0;
+  height: 0;
+  border: 14px solid transparent;
+  border-left-color: #afe288;
+  border-right: 0;
+  border-bottom: 0;
+  margin-top: -7px;
+  margin-right: -14px;
+}
+
 #messages > .input-fields {
   padding: 10px;
   display: flex;
@@ -245,24 +290,46 @@ body {
   margin: 0 10px;
   box-shadow: 0 0 1px 1px rgba(0, 0, 0, .1);
   font-size: 16px;
+  padding: 5px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 #messages > .input-fields > button {
-  padding: 5px 10px;
+  padding: 10px 15px;
   box-shadow: 0 0 1px 1px rgba(0, 0, 0, .1);
   border-radius: 3px;
-  background: #0a650a;
+  border: none;
+  cursor: pointer;
+  background: #F7CA18;
   color: #fff;
   font-size: 12px;
 }
 
 #logout {
-  align-self: center;
-  align-self: center;
   padding: 10px 20px;
-  text-transform: uppercase;
+  float: right;
 }
 
+.upload-btn-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
 
+.upload-btn-wrapper .btn {
+  border: 2px solid #ccc;
+  color: #ccc;
+  background-color: white;
+  padding: 8px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: bold;
+}
 
-.messages-container {}
+.upload-btn-wrapper input[type=file] {
+  font-size: 100px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}
