@@ -1,6 +1,6 @@
 <html>
   <head>
-    <title>Firebase DevFest 2018</title>
+    <title>Firebase Codelab @ DevFest 2018 &bull; Nairobi</title>
     <link rel="stylesheet" href="main.css">
   </head>
   <body>
@@ -23,15 +23,18 @@
           <span id="name">WHIDI</span>
         </div>
 
-        <h2>Chats</h3>
+        <h3>&times; Chats</h3>
+
         <div id="chats">
           <ul></ul>
-          <button id="logout" onclick="logout()">Logout</button>
         </div>
 
       </div>
 
       <div class="messages-container">
+        <div class="controls">
+            <button id="logout" onclick="logout()">Logout</button>
+        </div>
         <div id="receiver">
           <img src="" alt="">
           <span id="">Edwin Kibet</span>
@@ -42,7 +45,10 @@
           </div>
 
           <div class="input-fields">
-            <input type="file">
+            <div class="upload-btn-wrapper">
+                <button class="btn">Upload an image</button>
+                <input type="file">
+            </div>
             <textarea id="textarea" name="" cols="30" rows="3"></textarea>
             <button onclick="sendMessage()">SEND</button>
           </div>
