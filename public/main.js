@@ -4,16 +4,40 @@ var config = {
   authDomain: 'devfest-2018-chat-app.firebaseapp.com',
   databaseURL: 'https://devfest-2018-chat-app.firebaseio.com',
   projectId: 'devfest-2018-chat-app',
-  storageBucket: '',
+  storageBucket: 'devfest-2018-chat-app.appspot.com',
   messagingSenderId: '52464281842'
 };
 
 firebase.initializeApp(config)
 
+// ### helper functions
+var loginContainer = document.getElementById('login-container');
+var chatBox = document.getElementById('chat-box');
+var loading = document.getElementById('loading');
+
+var showLoading = function() {
+  loading.style.display = 'flex';
+};
+
+var hideLoading = function() {
+  loading.style.display = 'none';
+};
+
+var showChat = function() {
+  loginContainer.style.display = 'none';
+  chatBox.style.display = 'flex';
+};
+
+var showLogin = function() {
+  loginContainer.style.display = 'flex';
+  chatBox.style.display = 'none';
+};
+// ####
+
 const loginUser = function() {
   showLoading();
   var provider = new firebase.auth.GoogleAuthProvider();
-  firebase.auth().signInWithPopup(provider).then(function(resutl) {
+  firebase.auth().signInWithPopup(provider).then(function(result) {
       console.log('login success');
     })
     .catch(err => {
@@ -131,6 +155,17 @@ const getMessages = function(userId) {
         list.appendChild(div);
         if (message.sender == currentUserId) div.classList.add('from-me');
       }
+
+      if (message.type == 'media') {
+        const div = document.createElement('div');
+        div.className = 'message';
+        div.innerHTML = `
+          <img src="${message.url}" alt="">
+        `;
+        list.appendChild(div);
+        if (message.sender == currentUserId) div.classList.add('from-me');
+      }
+
     });
   });
 }
@@ -150,20 +185,30 @@ const getUser = function(userId) {
   });
 }
 
+const textarea = document.getElementById('textarea');
+// on enter pressed
+textarea.addEventListener('keypress', function(event) {
+  if (event.keyCode == 13) sendMessage();
+});
+
 const sendMessage = function() {
   // grab message from text field
-  const textarea = document.getElementById('textarea');
   if (!textarea.value) return;
   const messageRef = firebase.database().ref(`/chats/${currentUserId}/${receipient}`).push({
     type: 'text', message: textarea.value, sender: currentUserId
   });
-  // push the same message to recipients chats
-  firebase.database().ref(`/chats/${receipient}/${currentUserId}/${messageRef.key}`).set({
-    type: 'text', message: textarea.value, sender: currentUserId
-  });
-
   textarea.value = '';
 }
+
+const sendMedia = function(url) {
+  // grab message from text field
+  const messageRef = firebase.database().ref(`/chats/${currentUserId}/${receipient}`).push({
+    type: 'media', url: url, sender: currentUserId
+  });
+  const progressContainer = document.getElementById('progress');
+  progressContainer.innerHTML = ``;
+}
+
 
 // online offline status
 const updateOnlineStatus = function(userId) {
@@ -187,28 +232,34 @@ function logout() {
     });
 }
 
+// ### File upload
+const uploadBtn = document.getElementById('uploadBtn');
+uploadBtn.addEventListener('change', function(event) {
+  const files = event.target.files;
+  Object.keys(files).forEach(key => {
+    const file = files[key];
+    uploadFile(file);
+  })
+  console.log(files);
+});
 
-// ### helper functions
-var loginContainer = document.getElementById('login-container');
-var chatBox = document.getElementById('chat-box');
-var loading = document.getElementById('loading');
-
-var showLoading = function() {
-  loading.style.display = 'flex';
-};
-
-var hideLoading = function() {
-  loading.style.display = 'none';
-};
-
-var showChat = function() {
-  loginContainer.style.display = 'none';
-  chatBox.style.display = 'flex';
-};
-
-var showLogin = function() {
-  loginContainer.style.display = 'flex';
-  chatBox.style.display = 'none';
-};
-
+const uploadFile = function(file) {
+  console.log(file);
+  const key = Date.now();
+  const mediaRef = firebase.database().ref('/media').push();
+  const storageRef = firebase.storage().ref(`/media/${mediaRef.key}`);
+  const uploadTask = storageRef.put(file);
+  uploadTask.on('state_changed', function(snapshot) {
+    const progress = Math.ceil((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+    const progressContainer = document.getElementById('progress');
+    progressContainer.innerHTML = `${progress}%`;
+  }, err => {
+    console.log(err);
+  }, function() {
+    uploadTask.snapshot.ref.getDownloadURL().then(url => {
+      console.log(url);
+      sendMedia(url);
+    });
+  });
+}
 // TODO - add online status

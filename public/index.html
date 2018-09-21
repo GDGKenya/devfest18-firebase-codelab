@@ -20,7 +20,7 @@
       <div class="sidebar">
         <div id="profile">
           <img src="" alt="">
-          <span id="name">WHIDI</span>
+          <span id="name"></span>
         </div>
 
         <h3>&times; Chats</h3>
@@ -46,8 +46,11 @@
 
           <div class="input-fields">
             <div class="upload-btn-wrapper">
-                <button class="btn">Upload an image</button>
-                <input type="file">
+                <button class="btn">
+                  Upload an image
+                  <span id="progress"></span>
+                </button>
+                <input type="file" id="uploadBtn">
             </div>
             <textarea id="textarea" name="" cols="30" rows="3"></textarea>
             <button onclick="sendMessage()">SEND</button>

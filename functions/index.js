@@ -26,10 +26,10 @@ exports.onMessageCreated = functions.database.ref('/chats/{uid}/{receiverId}/{me
   .onCreate((snapshot, context) => {
     const { uid, receiverId, messageId } = context.params;
     const message = snapshot.val();
-    // sanitize the message if it's text and save to db
-    if (message.type === 'text') {
-      const sanitizedMessage = message;
-      return admin.database().ref(`/chats/${uid}/${receiverId}/${messageId}`).update(sanitizedMessage);
-    }
-    return Promise.resolve();
+    // add this message to receiver's lsit of messages
+    return admin.database().ref(`/chats/${receiverId}/${uid}/${messageId}`).once('value').then(snapshot => {
+      const val = snapshot.val();
+      if (val) return Promise.resolve(true);
+      return admin.database().ref(`/chats/${receiverId}/${uid}/${messageId}`).set(message);
+    });
   })
