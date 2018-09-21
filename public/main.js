@@ -10,6 +10,30 @@ var config = {
 
 firebase.initializeApp(config)
 
+// ### helper functions
+var loginContainer = document.getElementById('login-container');
+var chatBox = document.getElementById('chat-box');
+var loading = document.getElementById('loading');
+
+var showLoading = function() {
+  loading.style.display = 'flex';
+};
+
+var hideLoading = function() {
+  loading.style.display = 'none';
+};
+
+var showChat = function() {
+  loginContainer.style.display = 'none';
+  chatBox.style.display = 'flex';
+};
+
+var showLogin = function() {
+  loginContainer.style.display = 'flex';
+  chatBox.style.display = 'none';
+};
+// ####
+
 const loginUser = function() {
   showLoading();
   var provider = new firebase.auth.GoogleAuthProvider();
@@ -30,7 +54,7 @@ firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
     setCurrentUserProfile(user);
     getAllUsers();
-    showChats();
+    showChat();
     updateOnlineStatus(user.uid);
     updateOfflineStatus(user.uid);
   } else {
@@ -232,28 +256,4 @@ const uploadFile = function(file) {
     });
   });
 }
-
-// ### helper functions
-var loginContainer = document.getElementById('login-container');
-var chatBox = document.getElementById('chat-box');
-var loading = document.getElementById('loading');
-
-var showLoading = function() {
-  loading.style.display = 'flex';
-};
-
-var hideLoading = function() {
-  loading.style.display = 'none';
-};
-
-var showChat = function() {
-  loginContainer.style.display = 'none';
-  chatBox.style.display = 'flex';
-};
-
-var showLogin = function() {
-  loginContainer.style.display = 'flex';
-  chatBox.style.display = 'none';
-};
-
 // TODO - add online status
