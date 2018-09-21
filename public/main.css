@@ -155,8 +155,19 @@ body {
   background: #4e4e46;
 }
 
-#chats > ul > li > span {
+#chats > ul > li > .status {
+     width: 10px;
+    height: 10px;
+    margin-left: 10px;
+    border-radius: 50%; 
+}
 
+.online {
+  background: #4a9e4a;
+}
+
+.offline {
+  background: #e61818;
 }
 
 .messages-container {

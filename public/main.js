@@ -31,8 +31,11 @@ firebase.auth().onAuthStateChanged(function(user) {
     setCurrentUserProfile(user);
     getAllUsers();
     showChat();
+    updateOnlineStatus(user.uid);
+    updateOfflineStatus(user.uid);
   } else {
     showLogin();
+    updateOnlineStatus(user.uid);
   }
   hideLoading();
 });
@@ -59,8 +62,9 @@ const setCurrentUserProfile = function(user) {
   displayName.innerHTML = user.displayName || 'Anonymous';
 };
 
-// get all users on the app
 let firstLoaded = false;
+
+// get all users on the app
 const getAllUsers = function () {
   firebase.database().ref(`users/`).on('value', function(snapshot) {
     const users = snapshot.val();
@@ -90,6 +94,7 @@ const createList = function(user) {
   li.innerHTML = `
     <img src="${user.photoURL}">
     <span>${user.displayName || 'Anonymous'}</span>
+    <div class="status ${user.online ? 'online': 'offline'}"></div>
     <span class="hidden">${user.id || 0}</span>
   `;
   // append to list
@@ -159,6 +164,20 @@ const sendMessage = function() {
   });
 
   textarea.value = '';
+}
+
+// online offline status
+const updateOnlineStatus = function(userId) {
+  firebase.database().ref('.info/connected').on('value', function(snapshot) {
+    const online = snapshot.val();
+    if(online) return firebase.database().ref(`/users/${userId}`).update({ online: true });
+    return firebase.database().ref(`/users/${userId}`).update({ online: false });
+    // updateOfflineStatus(userId);
+  });
+}
+
+const updateOfflineStatus = function(userId) {
+  firebase.database().ref(`users/${userId}`).onDisconnect().update({ online: false });
 }
 
 function logout() {
