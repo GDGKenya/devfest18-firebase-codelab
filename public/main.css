@@ -93,7 +93,10 @@ body {
 
 #chat-box > .sidebar {
   width: 20%;
+  min-width: 250px;
   background: grey;
+  display: flex;
+  flex-direction: column;
 }
 
 #profile {
@@ -119,11 +122,14 @@ body {
 #chats {
   display: flex;
   flex-direction: column;
+  flex: 1;
 }
 
 #chats > ul {
   list-style: none;
   padding: 0;
+  flex: 1;
+  overflow-y: auto;
 }
 
 #chats > ul > li {
@@ -193,6 +199,7 @@ body {
   padding: 0;
   background-color: #e7e0de;
   flex: 1;
+  overflow-y: auto;
 }
 
 #messages > .messages-list > .message {
@@ -203,8 +210,13 @@ body {
   margin: 10px;
   border-radius: 5px;
   box-shadow: 0 0 1px 1px rgba(0, 0, 0, .1);
+  max-width: 80%;
 }
 
+#messages > .messages-list > .from-me {
+  background: #afe288;
+  margin-left: auto;
+}
 #messages > .input-fields {
   padding: 10px;
   display: flex;
