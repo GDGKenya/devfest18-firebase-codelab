@@ -35,7 +35,6 @@ firebase.auth().onAuthStateChanged(function(user) {
     updateOfflineStatus(user.uid);
   } else {
     showLogin();
-    updateOnlineStatus(user.uid);
   }
   hideLoading();
 });
