@@ -30,7 +30,7 @@ firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
     setCurrentUserProfile(user);
     getAllUsers();
-    showChat();
+    showChats();
     updateOnlineStatus(user.uid);
     updateOfflineStatus(user.uid);
   } else {
