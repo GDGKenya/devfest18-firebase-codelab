@@ -185,9 +185,14 @@ const getUser = function(userId) {
   });
 }
 
+const textarea = document.getElementById('textarea');
+// on enter pressed
+textarea.addEventListener('keypress', function(event) {
+  if (event.keyCode == 13) sendMessage();
+});
+
 const sendMessage = function() {
   // grab message from text field
-  const textarea = document.getElementById('textarea');
   if (!textarea.value) return;
   const messageRef = firebase.database().ref(`/chats/${currentUserId}/${receipient}`).push({
     type: 'text', message: textarea.value, sender: currentUserId
@@ -239,6 +244,7 @@ uploadBtn.addEventListener('change', function(event) {
 });
 
 const uploadFile = function(file) {
+  console.log(file);
   const key = Date.now();
   const mediaRef = firebase.database().ref('/media').push();
   const storageRef = firebase.storage().ref(`/media/${mediaRef.key}`);
